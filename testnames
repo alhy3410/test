@@ -1,0 +1,174 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: addnames; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE addnames (
+    id integer NOT NULL,
+    name character varying
+);
+
+
+ALTER TABLE addnames OWNER TO "Guest";
+
+--
+-- Name: addnames_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE addnames_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE addnames_id_seq OWNER TO "Guest";
+
+--
+-- Name: addnames_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE addnames_id_seq OWNED BY addnames.id;
+
+
+--
+-- Name: names; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE names (
+    id integer NOT NULL,
+    name character varying
+);
+
+
+ALTER TABLE names OWNER TO "Guest";
+
+--
+-- Name: names_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE names_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE names_id_seq OWNER TO "Guest";
+
+--
+-- Name: names_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE names_id_seq OWNED BY names.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY addnames ALTER COLUMN id SET DEFAULT nextval('addnames_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY names ALTER COLUMN id SET DEFAULT nextval('names_id_seq'::regclass);
+
+
+--
+-- Data for Name: addnames; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY addnames (id, name) FROM stdin;
+1	tim
+2	time
+3	times
+\.
+
+
+--
+-- Name: addnames_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('addnames_id_seq', 3, true);
+
+
+--
+-- Data for Name: names; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY names (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: names_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('names_id_seq', 1, false);
+
+
+--
+-- Name: addnames_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY addnames
+    ADD CONSTRAINT addnames_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: names_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY names
+    ADD CONSTRAINT names_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: epicodus
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM epicodus;
+GRANT ALL ON SCHEMA public TO epicodus;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
